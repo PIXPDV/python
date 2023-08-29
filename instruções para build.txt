@@ -1,0 +1,9 @@
+Primero instale as dependecias:
+
+pip install wheel
+pip install twine
+
+Então compile e envie a biblioteca:
+
+python setup.py sdist bdist_wheel
+twine upload dist/*
