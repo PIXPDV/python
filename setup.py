@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='PIXPDV',
-    version='1.0.0',
+    version='1.0.1',
     description='Uma biblioteca para interagir com o serviço PIXPDV.',
     author='PIXPDV',
     author_email='sac@pixpdv.com.br',
