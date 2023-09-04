@@ -26,7 +26,7 @@ class PIXPDV:
         hmac_digest = hmac.new(secret, message, digestmod=hashlib.sha256)
         return hmac_digest.hexdigest()
 
-    def status_token(self):
+    def statusToken(self):
         body = {'cnpj': self.cnpj}
         try:
             self.session.headers = {
@@ -40,7 +40,7 @@ class PIXPDV:
         except Exception as e:
             return str(e)
 
-    def gerar_qr_dinamico(self, valor, minutos, msg, imagem=False):
+    def QRDinamico(self, valor, minutos, msg, imagem=False):
         body = {'valor': valor, 'minutos': minutos, 'mensagem': msg, 'imagem': imagem}
         try:
             self.session.headers = {
@@ -54,7 +54,7 @@ class PIXPDV:
         except Exception as e:
             return str(e)
 
-    def gerar_qr_cobranca(self, valor, vencimento, expira, msg, pagador, juros, multa, desconto, img=False, documento=""):
+    def QRCobranca(self, valor, vencimento, expira, msg, pagador, juros, multa, desconto, img=False, documento=""):
         body = {
             'valor': valor,
             'vencimento': vencimento,
@@ -78,8 +78,24 @@ class PIXPDV:
             return data
         except Exception as e:
             return str(e)
+        
+    def QRDinamicoRemove(self, qrcodeid):
+        try:
+            response = self.session.delete(f'{self.base_url}/qrdinamico?qrcodeid={qrcodeid}')
+            data = response.json()
+            return data
+        except Exception as e:
+            return str(e)
+        
+    def QRCobrancaRemove(self, qrcodeid):
+        try:
+            response = self.session.delete(f'{self.base_url}/qrcobranca?qrcodeid={qrcodeid}')
+            data = response.json()
+            return data
+        except Exception as e:
+            return str(e)
 
-    def status_qr_code(self, qrcodeid):
+    def QRStatus(self, qrcodeid):
         try:
             response = self.session.get(f'{self.base_url}/qrstatus?qrcodeid={qrcodeid}')
             data = response.json()
@@ -87,7 +103,7 @@ class PIXPDV:
         except Exception as e:
             return str(e)
 
-    def devolver_pagamento(self, qrcodeid):
+    def QRRefund(self, qrcodeid):
         body = {'qrcodeid': qrcodeid}
         try:
             self.session.headers = {
@@ -117,7 +133,7 @@ class PIXPDV:
         except Exception as e:
             return str(e)
 
-    def retirar_saldo(self, valor):
+    def Retirada(self, valor):
         body = {'valor': valor}
         try:
             self.session.headers = {
