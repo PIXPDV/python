@@ -10,9 +10,9 @@ BASE_URL_HOMOLOGACAO = "https://pixpdv.com.br/api-h/v1"
 class PIXPDV:
     def __init__(self, cnpj, token, secret, homologacao=False):
         self.homologacao = homologacao
-        self.cnpj = cnpj if homologacao else '00641418000188'
-        self.token = token if homologacao else 'tk-ezI0OTgwMzRDLUE1MzctNDM3QS1CQTk0LUZFODlFMEE0MzIyNn0'
-        self.secret = secret if homologacao else 'sk-e0JBNTFGRTY0LTczMkYtNDYxNC1CQ0Q1LUI0OTVDODgxOTUwRX0'
+        self.cnpj = '00641418000188' if homologacao else cnpj
+        self.token = 'tk-ezI0OTgwMzRDLUE1MzctNDM3QS1CQTk0LUZFODlFMEE0MzIyNn0' if homologacao else token
+        self.secret = 'sk-e0JBNTFGRTY0LTczMkYtNDYxNC1CQ0Q1LUI0OTVDODgxOTUwRX0' if homologacao else secret
         self.session = requests.Session()
         # self.session.headers = {
         #     'Content-Type': 'application/json',
